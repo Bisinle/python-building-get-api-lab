@@ -69,15 +69,9 @@ def baked_goods_by_price():
 @app.route('/baked_goods/most_expensive')
 def most_expensive_baked_good():
     most_expensive = BakedGood.query.order_by(desc(BakedGood.price)).limit(1).first()
-    most_expensive_dict = {
-
-            'id':most_expensive.id,
-            'name':most_expensive.name,
-            'price':most_expensive.price,
-            'created_at':most_expensive.created_at,
-            'updated_at':most_expensive.updated_at,
-            'bakery_id':most_expensive.bakery_id,
-    }
+    
+    
+    most_expensive_dict = most_expensive.to_dict()
     return make_response(most_expensive_dict,200)
 
 if __name__ == '__main__':
